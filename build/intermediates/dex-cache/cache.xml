@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pre-dex-items>
+
+    <item
+        dex="/Users/dharm/AndroidStudioProjects/android-rest-client-template-master/app/build/intermediates/pre-dexed/debug/universal-image-loader-1.8.4-127c398ee2e5b73911dc00b40820bb43cfbdb8fa.jar"
+        jar="/Users/dharm/AndroidStudioProjects/android-rest-client-template-master/app/libs/universal-image-loader-1.8.4.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="eee81e43531ce82db1781c5a8b27781ca384eede"/>
+    <item
+        dex="/Users/dharm/AndroidStudioProjects/android-rest-client-template-master/app/build/intermediates/pre-dexed/debug/scribe-codepath-9d59aae8a70075cf605975ed263703a88095c308.jar"
+        jar="/Users/dharm/AndroidStudioProjects/android-rest-client-template-master/app/libs/scribe-codepath.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="6e0748acc9e7be0695de0d38016d260df52d9167"/>
+    <item
+        dex="/Users/dharm/AndroidStudioProjects/android-rest-client-template-master/app/build/intermediates/pre-dexed/debug/android-async-http-1.4.3-930e062a397e057ee220cc43d99c48ab8e9722bb.jar"
+        jar="/Users/dharm/AndroidStudioProjects/android-rest-client-template-master/app/libs/android-async-http-1.4.3.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="f70e680861fdf9449819003e7799a4e9aca047f8"/>
+    <item
+        dex="/Users/dharm/AndroidStudioProjects/android-rest-client-template-master/app/build/intermediates/pre-dexed/debug/ActiveAndroid-3.1-adcddac4c58-c0aaecdda9fecfca3e7ce9fc630a409ed0e296fd.jar"
+        jar="/Users/dharm/AndroidStudioProjects/android-rest-client-template-master/app/libs/ActiveAndroid-3.1-adcddac4c58.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="e550c03ed8bcfe3b9f97d8c5ce6e8ee305f3beed"/>
+    <item
+        dex="/Users/dharm/AndroidStudioProjects/android-rest-client-template-master/app/build/intermediates/pre-dexed/debug/codepath-oauth-0.3.0-4d5a4f76246fa0493dbd5a0b66d6876c506231fd.jar"
+        jar="/Users/dharm/AndroidStudioProjects/android-rest-client-template-master/app/libs/codepath-oauth-0.3.0.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="b90f1c3541987f690e2fb854775914cc23266250"/>
+    <item
+        dex="/Users/dharm/AndroidStudioProjects/android-rest-client-template-master/app/build/intermediates/pre-dexed/debug/codepath-utils-3b1e0f92c2c9c9050abc34d051c73017fd8f65e4.jar"
+        jar="/Users/dharm/AndroidStudioProjects/android-rest-client-template-master/app/libs/codepath-utils.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="10901a5ef726eacf1b2443b7f38dc4cc9cd3f7d4"/>
+    <item
+        dex="/Users/dharm/AndroidStudioProjects/android-rest-client-template-master/app/build/intermediates/pre-dexed/debug/support-v4-19.1.0-fe930dc68beb1e566675ce71b270d4091c6c249b.jar"
+        jar="/Applications/Android Studio.app/sdk/extras/android/m2repository/com/android/support/support-v4/19.1.0/support-v4-19.1.0.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67"/>
+
+</pre-dex-items>
