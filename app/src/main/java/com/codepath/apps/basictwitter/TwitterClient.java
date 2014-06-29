@@ -38,6 +38,13 @@ public class TwitterClient extends OAuthBaseClient {
         params.put("since_id","1");
         client.get(apiUrl,params,handler);
     }
+
+    public void postNew(AsyncHttpResponseHandler handler, String tweetText){
+        String apiUrl = getApiUrl("statuses/update.json");
+        RequestParams params = new RequestParams();
+        params.put("status",tweetText); //TODO: give correct value
+        client.post(apiUrl,params,handler);
+    }
 	// CHANGE THIS
 	// DEFINE METHODS for different API endpoints here
 	/*public void getInterestingnessList(AsyncHttpResponseHandler handler) {

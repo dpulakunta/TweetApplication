@@ -14,6 +14,7 @@ public class Tweet {
     private String createdAt;
     private User user;
 
+
     public String getBody() {
         return body;
     }
@@ -59,5 +60,10 @@ public class Tweet {
             }
         }
         return tweets;
+    }
+
+    @Override
+    public String toString() {
+        return getBody() + " - " + getUser().getScreenName();
     }
 }

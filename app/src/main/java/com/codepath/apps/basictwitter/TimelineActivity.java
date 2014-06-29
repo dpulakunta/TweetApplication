@@ -1,11 +1,11 @@
 package com.codepath.apps.basictwitter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.codepath.apps.basictwitter.models.Tweet;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class TimelineActivity extends Activity {
     private TwitterClient client;
     private ArrayList<Tweet> tweets;
-    private ArrayAdapter<Tweet> aTweets;
+    private TweetAdapter aTweets;
     private ListView lvListView;
 
     @Override
@@ -29,8 +29,14 @@ public class TimelineActivity extends Activity {
         populateTimeLine();
         lvListView = (ListView)findViewById(R.id.lvTweets);
         tweets = new ArrayList<Tweet>();
-        aTweets = new ArrayAdapter<Tweet>(this,android.R.layout.simple_list_item_1,tweets);
+        aTweets = new TweetAdapter(getApplicationContext(),tweets);
         lvListView.setAdapter(aTweets);
+        lvListView.setOnScrollListener(new EndlessScrollListener() {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount) {
+
+            }
+        });
 
     }
      public void populateTimeLine(){
@@ -45,7 +51,7 @@ public class TimelineActivity extends Activity {
             @Override
             public void onFailure(Throwable e, String s){
                 Log.d("Debug",e.toString());
-                Log.d("Debug",s.toString());
+
             }
         });
      }
@@ -66,6 +72,16 @@ public class TimelineActivity extends Activity {
         if (id == R.id.action_settings) {
             return true;
         }
+        if (id == R.id.action_compose) {
+            composeMessage();
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
+    }
+
+    private void composeMessage() {
+        Intent composeIntent = new Intent(getApplicationContext(),ComposeActivity.class);
+        startActivity(composeIntent);
     }
 }
