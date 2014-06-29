@@ -15,6 +15,7 @@ public class Tweet {
     private User user;
 
 
+
     public String getBody() {
         return body;
     }
