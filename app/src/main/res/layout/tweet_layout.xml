@@ -14,7 +14,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="\@foo"
+        android:text="Actual Name"
         android:id="@+id/tvScreenName"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/ivProfileImage"
@@ -27,7 +27,8 @@
         android:id="@+id/tvBody"
         android:layout_below="@+id/tvScreenName"
         android:layout_toRightOf="@+id/ivProfileImage"
-        android:layout_marginLeft="10dp"/>
+        android:layout_marginLeft="10dp"
+        android:autoLink="web"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -35,5 +36,16 @@
         android:text=" 1 day"
         android:id="@+id/timeStamp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true" />
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="\@screenName"
+        android:id="@+id/txtScreenName"
+        android:layout_toRightOf="@+id/tvScreenName"
+        android:layout_alignBaseline="@+id/tvScreenName"
+        android:layout_marginLeft="5dp"
+        android:textSize="10dp" />
 </RelativeLayout>

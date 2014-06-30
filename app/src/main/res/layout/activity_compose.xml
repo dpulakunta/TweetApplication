@@ -9,20 +9,46 @@
     tools:context="com.codepath.apps.basictwitter.ComposeActivity"
     android:id="@+id/lout">
 
+    # android:id="@+id/txtCompose"
+    # android:id="@+id/btnCompose"
+
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/imgUserCur"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UserName"
+        android:id="@+id/txtUserName"
+        android:layout_toRightOf="@+id/imgUserCur"
+         />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="\@ScreenName"
+        android:id="@+id/txtScreenName"
+        android:layout_toRightOf="@+id/imgUserCur"
+        android:layout_below="@+id/txtUserName"
+        android:textSize="10dp"
+        />
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
         android:ems="10"
         android:id="@+id/txtCompose"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/imgUserCur"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:autoText="false"
-        android:editable="true"
-        android:height="120dp" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:hint="What's Happening?" />
 
     <Button
         android:layout_width="wrap_content"
@@ -31,6 +57,15 @@
         android:id="@+id/btnCompose"
         android:layout_below="@+id/txtCompose"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
         android:onClick="writeTweet"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="140"
+        android:id="@+id/txtCount"
+        android:layout_alignParentRight="true"
+        android:layout_above="@+id/txtCompose"/>
+
+
 </RelativeLayout>

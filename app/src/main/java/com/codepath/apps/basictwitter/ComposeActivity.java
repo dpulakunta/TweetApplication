@@ -2,11 +2,14 @@ package com.codepath.apps.basictwitter;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -19,6 +22,31 @@ public class ComposeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compose);
         client = TwitterClientApp.getRestClient();
+        TextView userName = (TextView) findViewById(R.id.txtUserName);
+        userName.setText("cool555cigar");
+        TextView screenName = (TextView) findViewById(R.id.txtScreenName);
+        screenName.setText("@cool555cigar");
+
+        final TextView txtCount = (TextView) findViewById(R.id.txtCount);
+        final EditText writtenTweet = (EditText) findViewById(R.id.txtCompose);
+        writtenTweet.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                int allowedChars = 140 - writtenTweet.getText().toString().length();
+                txtCount.setText(Integer.toString(allowedChars));
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
     }
 
     public void composeTweet(String tweetBody){

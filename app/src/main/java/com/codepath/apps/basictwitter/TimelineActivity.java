@@ -32,28 +32,34 @@ public class TimelineActivity extends Activity {
         aTweets = new TweetAdapter(getApplicationContext(),tweets);
         populateTimeLine();
         lvListView.setAdapter(aTweets);
+
         lvListView.setOnScrollListener(new EndlessScrollListener() {
             @Override
             public void onLoadMore(int page, int totalItemsCount) {
-                Tweet lastTweet = tweets.get(totalItemsCount-1);
-                long max = lastTweet.getUid();
-                client.getHomeTimeline(new JsonHttpResponseHandler(){
-                    @Override
-                    public void onSuccess(JSONArray json) {
-                        aTweets.addAll(Tweet.fromJson(json));
-                        Log.d("Debug", json.toString());
+                Log.d("Debug","setting pull to refresh");
+                if (totalItemsCount != 0) {
+                    Tweet lastTweet = tweets.get(totalItemsCount - 1);
+                    long max = lastTweet.getUid();
+                    client.getHomeTimeline(new JsonHttpResponseHandler() {
+                        @Override
+                        public void onSuccess(JSONArray json) {
+                            aTweets.addAll(Tweet.fromJson(json));
+                            Log.d("Debug", json.toString());
 
-                    }
+                        }
 
-                    @Override
-                    public void onFailure(Throwable e, String s){
-                        Log.d("Debug",e.toString());
+                        @Override
+                        public void onFailure(Throwable e, String s) {
+                            Log.d("Debug", e.toString());
 
-                    }
-                },Long.toString(max));
+                        }
+                    }, Long.toString(max));
 
+                }
             }
         });
+
+
 
     }
      public void populateTimeLine(){
