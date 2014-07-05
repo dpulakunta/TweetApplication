@@ -1,111 +1,48 @@
 package com.codepath.apps.basictwitter;
 
-import android.app.Activity;
-import android.content.Intent;
+import android.app.ActionBar;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.ListView;
+import android.support.v4.app.FragmentActivity;
 
-import com.codepath.apps.basictwitter.models.Tweet;
-import com.loopj.android.http.JsonHttpResponseHandler;
+import com.codepath.apps.basictwitter.fragments.HomeTimelineFragment;
+import com.codepath.apps.basictwitter.fragments.MentionsTimelineFragment;
+import com.codepath.apps.basictwitter.listener.FragmentTabListener;
 
-import org.json.JSONArray;
-
-import java.util.ArrayList;
-
-public class TimelineActivity extends Activity {
-    private TwitterClient client;
-    private ArrayList<Tweet> tweets;
-    private TweetAdapter aTweets;
-    private ListView lvListView;
+public class TimelineActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
-        client = TwitterClientApp.getRestClient();
-
-        lvListView = (ListView)findViewById(R.id.lvTweets);
-        tweets = new ArrayList<Tweet>();
-        aTweets = new TweetAdapter(getApplicationContext(),tweets);
-        populateTimeLine();
-        lvListView.setAdapter(aTweets);
-
-        lvListView.setOnScrollListener(new EndlessScrollListener() {
-            @Override
-            public void onLoadMore(int page, int totalItemsCount) {
-                Log.d("Debug","setting pull to refresh");
-                if (totalItemsCount != 0) {
-                    Tweet lastTweet = tweets.get(totalItemsCount - 1);
-                    long max = lastTweet.getUid();
-                    client.getHomeTimeline(new JsonHttpResponseHandler() {
-                        @Override
-                        public void onSuccess(JSONArray json) {
-                            aTweets.addAll(Tweet.fromJson(json));
-                            Log.d("Debug", json.toString());
-
-                        }
-
-                        @Override
-                        public void onFailure(Throwable e, String s) {
-                            Log.d("Debug", e.toString());
-
-                        }
-                    }, Long.toString(max));
-
-                }
-            }
-        });
-
-
-
+        setupTabs();
     }
-     public void populateTimeLine(){
+    private void setupTabs() {
+        ActionBar actionBar = getActionBar();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        actionBar.setDisplayShowTitleEnabled(true);
 
-        client.getHomeTimeline(new JsonHttpResponseHandler(){
-            @Override
-            public void onSuccess(JSONArray json) {
-                aTweets.addAll(Tweet.fromJson(json));
-                Log.d("Debug", json.toString());
+        ActionBar.Tab tab1 = actionBar
+                .newTab()
+                .setText("Home")
+                .setIcon(R.drawable.ic_home)
+                .setTag("HomeTimelineFragment")
+                .setTabListener(
+                        new FragmentTabListener<HomeTimelineFragment>(R.id.flContainer, this, "first",
+                                HomeTimelineFragment.class));
 
-            }
+        actionBar.addTab(tab1);
+        actionBar.selectTab(tab1);
 
-            @Override
-            public void onFailure(Throwable e, String s){
-                Log.d("Debug",e.toString());
+        ActionBar.Tab tab2 = actionBar
+                .newTab()
+                .setText("Mentions  ")
+                .setIcon(R.drawable.ic_mention)
+                .setTag("MentionsTimelineFragment")
+                .setTabListener(
+                        new FragmentTabListener<MentionsTimelineFragment>(R.id.flContainer, this, "second",
+                                MentionsTimelineFragment.class));
 
-            }
-        });
-     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.timeline, menu);
-        return true;
+        actionBar.addTab(tab2);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        if (id == R.id.action_compose) {
-            composeMessage();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void composeMessage() {
-        Intent composeIntent = new Intent(getApplicationContext(),ComposeActivity.class);
-        startActivity(composeIntent);
-    }
 }

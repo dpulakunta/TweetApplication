@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.codepath.oauth.OAuthBaseClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import org.scribe.builder.api.Api;
@@ -52,7 +53,14 @@ public class TwitterClient extends OAuthBaseClient {
         params.put("status",tweetText); //TODO: give correct value
         client.post(apiUrl,params,handler);
     }
-	// CHANGE THIS
+
+    public void getMentionsTimeline(JsonHttpResponseHandler jsonHttpResponseHandler) {
+        String apiUrl = getApiUrl("statuses/mentions_timeline.json");
+        RequestParams params = new RequestParams();
+        params.put("since_id","1");
+        client.get(apiUrl,params,jsonHttpResponseHandler);
+    }
+    // CHANGE THIS
 	// DEFINE METHODS for different API endpoints here
 	/*public void getInterestingnessList(AsyncHttpResponseHandler handler) {
 		String apiUrl = getApiUrl("?nojsoncallback=1&method=flickr.interestingness.getList");

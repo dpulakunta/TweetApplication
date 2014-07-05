@@ -1,5 +1,9 @@
 package com.codepath.apps.basictwitter.models;
 
+import com.activeandroid.Model;
+import com.activeandroid.annotation.Column;
+import com.activeandroid.annotation.Table;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -8,10 +12,15 @@ import java.util.ArrayList;
 /**
  * Created by dharm on 6/26/14.
  */
-public class Tweet {
+@Table(name = "Tweets")
+public class Tweet extends Model {
+    @Column(name = "Body")
     private String body;
+    @Column(name = "Uid",unique = true)
     private Long uid;
+    @Column(name = "CreatedAt")
     private String createdAt;
+    @Column(name = "User", onDelete = Column.ForeignKeyAction.CASCADE)
     private User user;
 
 
@@ -44,6 +53,8 @@ public class Tweet {
             e.printStackTrace();
             return null;
         }
+
+        //tweet.save();
         return tweet;
     }
     public static ArrayList<Tweet> fromJson(JSONArray jsonArray){

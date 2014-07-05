@@ -1,11 +1,16 @@
 package com.codepath.apps.basictwitter.models;
 
+import com.activeandroid.Model;
+import com.activeandroid.annotation.Column;
+import com.activeandroid.annotation.Table;
+
 import org.json.JSONObject;
 
 /**
  * Created by dharm on 6/26/14.
  */
-public class User {
+@Table(name = "Users")
+public class User extends Model{
     public String getName() {
         return name;
     }
@@ -22,9 +27,13 @@ public class User {
         return profileImageUrl;
     }
 
+    @Column(name = "Name")
     private String name;
+    @Column(name = "Uid", unique = true, onUniqueConflict = Column.ConflictAction.REPLACE)
     private Long uid;
+    @Column(name = "screenName")
     private String screenName;
+    @Column(name = "profileImageUrl")
     private String profileImageUrl;
 
     public static User fromJson(JSONObject json) {
@@ -38,6 +47,7 @@ public class User {
             e.printStackTrace();
             return null;
         }
+        //user.save();
     return user;
     }
 }

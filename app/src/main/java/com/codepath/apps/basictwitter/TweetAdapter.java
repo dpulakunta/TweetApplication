@@ -1,6 +1,7 @@
 package com.codepath.apps.basictwitter;
 
 import android.content.Context;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,14 +47,17 @@ public class TweetAdapter extends ArrayAdapter<Tweet> {
         ImageLoader imgLoader = ImageLoader.getInstance();
 
         imgLoader.displayImage(tweet.getUser().getProfileImageUrl(),ivProfileImage);
-        tvUserName.setText(tweet.getUser().getScreenName());
+        tvUserName.setText(tweet.getUser().getName());
         tvBody.setText(tweet.getBody());
+        tvBody.setMovementMethod(LinkMovementMethod.getInstance());
 
         String createdTime = tweet.getCreatedAt();
         created.setText(timeCalci(createdTime));
         Log.d("Debug",createdTime);
-
+        TextView tvScreenName = (TextView) v.findViewById(R.id.txtScreenName);
+        tvScreenName.setText("@"+tweet.getUser().getScreenName());
         return v;
+
 
     }
     public String timeCalci(String createdTime){
